@@ -14,5 +14,16 @@ namespace Xtramile.WeatherForecasts.Api.ServiceExtensions
                     .Build());
             });
         }
+
+        public static void ConfigureDependencyInjection(this IServiceCollection services)
+        {
+            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IEmailRepository, EmailRepository>();
+            services.AddScoped<IDocumentRepository, DocumentRepository>();
+            services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IDocumentService, DocumentService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IClientDao, ClientDao>();
+        }
     }
 }
