@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Xtramile.WeatherForecasts.Library\Xtramile.WeatherForecasts.Library.csproj" />
+    <ProjectReference Include="..\Xtramile.WeatherForecasts.Repository\Xtramile.WeatherForecasts.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
