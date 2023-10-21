@@ -23,8 +23,8 @@ namespace Xtramile.WeatherForecasts.Controllers
         }
 
 
-        [HttpGet("{country}")]
-        public async Task<GetAllCitiesResponse> GetAllCitiesByCountry(GetAllCitiesByCountryRequest request)
+        [HttpGet("GetCityByCountry")]
+        public async Task<GetAllCitiesResponse> GetAllCitiesByCountry([FromQuery] GetAllCitiesByCountryRequest request)
         {
             return await cityService.GetAllCities(request.Country);
         }

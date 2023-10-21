@@ -16,8 +16,8 @@ namespace Xtramile.WeatherForecasts.Controllers
             this.weatherForecastService = weatherForecastService;
         }
 
-        [HttpGet("{city}")]
-        public async Task<GetWeatherForecastResponse> GetWeatherForecast(GetWeatherForecastRequest request)
+        [HttpGet]
+        public async Task<GetWeatherForecastResponse> GetWeatherForecast([FromQuery]GetWeatherForecastRequest request)
         {
             return await weatherForecastService.GetWeatherForecast(request.City);
         }
