@@ -1,12 +1,12 @@
-using AutoMapper;
+using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xtramile.WeatherForecasts.Controllers;
-using Xtramile.WeatherForecasts.Library.Mappers;
+using Xtramile.WeatherForecasts.Library.Dtos;
+using Xtramile.WeatherForecasts.Library.Models;
 using Xtramile.WeatherForecasts.Library.Requests;
-using Xtramile.WeatherForecasts.Repository.Repositories;
-using Xtramile.WeatherForecasts.Repository.Repositories.Interfaces;
-using Xtramile.WeatherForecasts.Service.Services;
+using Xtramile.WeatherForecasts.Library.Responses;
 using Xtramile.WeatherForecasts.Service.Services.Interfaces;
 
 namespace Xtramile.WeatherForecasts.Test.Controllers
@@ -15,25 +15,24 @@ namespace Xtramile.WeatherForecasts.Test.Controllers
     public class CityControllerTest
     {
         private CityController _cityController;
-        private ICityRepository _cityRepository;
-        private ICityService _cityService;
-        private IMapper _mapper;
+        private Mock<ICityService> _cityServiceMock;
 
         [SetUp]
         public void Setup()
         {
-            _cityRepository = new CityRepository();
-
-            var profile = new WeatherForecastMapperConfig();
-            _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(profile)));
-            _cityService = new CityService(_mapper, _cityRepository);
-
-            _cityController = new CityController(_cityService);
+            _cityServiceMock = new Mock<ICityService>();
+            _cityController = new CityController(_cityServiceMock.Object);
         }
 
         [Test]
         public async Task GetAllCities_Should_MoreThanZero()
         {
+            var cities = new List<CityDto>{
+                new CityDto{ },
+                new CityDto{ }
+            };
+            var response = new GetAllCitiesResponse(cities);
+            _cityServiceMock.Setup(c => c.GetAllCities()).Returns(Task.FromResult(response));
             var result = await _cityController.GetAllCities();
             Assert.Greater(result.Data.Count, 0);
         }
@@ -43,6 +42,12 @@ namespace Xtramile.WeatherForecasts.Test.Controllers
         public async Task GetAllCitiesByCountry_Should_MoreThanZero()
         {
             string country = "GB";
+            var cities = new List<CityDto>{
+                new CityDto{ },
+                new CityDto{ }
+            };
+            var response = new GetAllCitiesResponse(cities);
+            _cityServiceMock.Setup(c => c.GetAllCities(It.IsAny<string>())).Returns(Task.FromResult(response));
             GetAllCitiesByCountryRequest request = new GetAllCitiesByCountryRequest
             {
                 Country = country
