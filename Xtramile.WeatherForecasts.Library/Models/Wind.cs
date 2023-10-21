@@ -1,4 +1,6 @@
-﻿namespace Xtramile.WeatherForecasts.Library.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Xtramile.WeatherForecasts.Library.Models
 {
     public class Wind
     {

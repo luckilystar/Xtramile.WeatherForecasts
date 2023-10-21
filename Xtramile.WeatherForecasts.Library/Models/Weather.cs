@@ -1,4 +1,7 @@
-﻿namespace Xtramile.WeatherForecasts.Library.Models
+﻿using System.Text.Json.Serialization;
+using Xtramile.WeatherForecasts.Library.Dtos;
+
+namespace Xtramile.WeatherForecasts.Library.Models
 {
     public class Weather
     {
