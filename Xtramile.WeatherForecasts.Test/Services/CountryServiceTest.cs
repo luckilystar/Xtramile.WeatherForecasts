@@ -1,9 +1,12 @@
+using AutoMapper;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xtramile.WeatherForecasts.Library.Dtos;
-using Xtramile.WeatherForecasts.Library.Responses;
+using Xtramile.WeatherForecasts.Library.Mappers;
+using Xtramile.WeatherForecasts.Library.Models;
+using Xtramile.WeatherForecasts.Repository.Repositories.Interfaces;
+using Xtramile.WeatherForecasts.Service.Services;
 using Xtramile.WeatherForecasts.Service.Services.Interfaces;
 
 namespace Xtramile.WeatherForecasts.Test.Services
@@ -11,25 +14,31 @@ namespace Xtramile.WeatherForecasts.Test.Services
     [TestFixture]
     public class CountryServiceTest
     {
-        private Mock<ICountryService> _countryServiceMock;
+        private Mock<ICountryRepository> _countryRepositoryMock;
+        private ICountryService _countryService;
+        private IMapper _mapper;
 
         [SetUp]
         public void Setup()
         {
-            _countryServiceMock = new Mock<ICountryService>();
+            _countryRepositoryMock = new Mock<ICountryRepository>();
+
+            var profile = new WeatherForecastMapperConfig();
+            _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(profile)));
+            _countryService = new CountryService(_mapper,_countryRepositoryMock.Object);
+
         }
 
         [Test]
         public async Task GetAllCountries_Should_MoreThanZero()
         {
-            var countries = new List<CountryDto>{
-                new CountryDto{ },
-                new CountryDto{ }
+            var countries = new List<Country>{
+                new Country{ },
+                new Country{ }
             };
-            var response = new GetAllCountriesResponse(countries);
-            _countryServiceMock.Setup(c => c.GetAllCountries()).Returns(Task.FromResult(response));
+            _countryRepositoryMock.Setup(c => c.GetAllCountries()).Returns(Task.FromResult(countries));
 
-            var result = await _countryServiceMock.Object.GetAllCountries();
+            var result = await _countryService.GetAllCountries();
             Assert.Greater(result.Data.Count, 0);
         }
     }
