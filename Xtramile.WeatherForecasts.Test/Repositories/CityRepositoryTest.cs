@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System.Threading.Tasks;
-using Xtramile.WeatherForecasts.Repository.Respositories;
-using Xtramile.WeatherForecasts.Repository.Respositories.Interfaces;
+using Xtramile.WeatherForecasts.Repository.Repositories;
+using Xtramile.WeatherForecasts.Repository.Repositories.Interfaces;
 
 namespace Xtramile.WeatherForecasts.Test.Repositories
 {

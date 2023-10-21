@@ -3,8 +3,8 @@ using NUnit.Framework;
 using System.Threading.Tasks;
 using Xtramile.WeatherForecasts.Controllers;
 using Xtramile.WeatherForecasts.Library.Mappers;
-using Xtramile.WeatherForecasts.Repository.Respositories;
-using Xtramile.WeatherForecasts.Repository.Respositories.Interfaces;
+using Xtramile.WeatherForecasts.Repository.Repositories;
+using Xtramile.WeatherForecasts.Repository.Repositories.Interfaces;
 using Xtramile.WeatherForecasts.Service.Services;
 using Xtramile.WeatherForecasts.Service.Services.Interfaces;
 

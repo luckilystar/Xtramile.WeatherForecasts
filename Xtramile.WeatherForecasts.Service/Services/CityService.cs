@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xtramile.WeatherForecasts.Library.Dtos;
 using Xtramile.WeatherForecasts.Library.Responses;
-using Xtramile.WeatherForecasts.Repository.Respositories.Interfaces;
+using Xtramile.WeatherForecasts.Repository.Repositories.Interfaces;
 using Xtramile.WeatherForecasts.Service.Services.Interfaces;
 
 namespace Xtramile.WeatherForecasts.Service.Services

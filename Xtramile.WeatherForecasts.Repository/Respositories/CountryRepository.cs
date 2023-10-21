@@ -5,9 +5,9 @@ using System.IO;
 using System.Threading.Tasks;
 using Xtramile.WeatherForecasts.Library.Models;
 using Xtramile.WeatherForecasts.Library.Utils;
-using Xtramile.WeatherForecasts.Repository.Respositories.Interfaces;
+using Xtramile.WeatherForecasts.Repository.Repositories.Interfaces;
 
-namespace Xtramile.WeatherForecasts.Repository.Respositories
+namespace Xtramile.WeatherForecasts.Repository.Repositories
 {
     public class CountryRepository : ICountryRepository
     {
