@@ -21,6 +21,7 @@ namespace Xtramile.WeatherForecasts
         {
             services.AddControllers();
             services.ConfigureCors();
+            services.ConfigureDependencyInjection();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

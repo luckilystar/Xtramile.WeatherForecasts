@@ -1,4 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Xtramile.WeatherForecasts.Repository.Respositories;
+using Xtramile.WeatherForecasts.Repository.Respositories.Interfaces;
+using Xtramile.WeatherForecasts.Service.Services;
+using Xtramile.WeatherForecasts.Service.Services.Interfaces;
 
 namespace Xtramile.WeatherForecasts.Api.ServiceExtensions
 {
@@ -17,13 +21,8 @@ namespace Xtramile.WeatherForecasts.Api.ServiceExtensions
 
         public static void ConfigureDependencyInjection(this IServiceCollection services)
         {
-            services.AddScoped<IClientRepository, ClientRepository>();
-            services.AddScoped<IEmailRepository, EmailRepository>();
-            services.AddScoped<IDocumentRepository, DocumentRepository>();
-            services.AddScoped<IClientService, ClientService>();
-            services.AddScoped<IDocumentService, DocumentService>();
-            services.AddScoped<IEmailService, EmailService>();
-            services.AddScoped<IClientDao, ClientDao>();
+            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
         }
     }
 }

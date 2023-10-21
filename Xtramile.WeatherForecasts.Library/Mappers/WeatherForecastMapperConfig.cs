@@ -11,10 +11,14 @@ namespace Xtramile.WeatherForecasts.Library.Mappers
             CreateMap<CityDto, City>();
             CreateMap<CountryDto, Country>();
             CreateMap<WeatherForecastDto, WeatherForecast>();
+            CreateMap<WeatherDto, Weather>();
+            CreateMap<WindDto, Wind>();
 
             CreateMap<City, CityDto>();
             CreateMap<Country, CountryDto>();
             CreateMap<WeatherForecast, WeatherForecastDto>();
+            CreateMap<Weather, WeatherDto>();
+            CreateMap<Wind, WindDto>();
         }
     }
 }
