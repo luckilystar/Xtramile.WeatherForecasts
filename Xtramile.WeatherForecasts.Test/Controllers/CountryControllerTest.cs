@@ -1,19 +1,21 @@
 using AutoMapper;
 using NUnit.Framework;
 using System.Threading.Tasks;
+using Xtramile.WeatherForecasts.Controllers;
 using Xtramile.WeatherForecasts.Library.Mappers;
 using Xtramile.WeatherForecasts.Repository.Respositories;
 using Xtramile.WeatherForecasts.Repository.Respositories.Interfaces;
 using Xtramile.WeatherForecasts.Service.Services;
 using Xtramile.WeatherForecasts.Service.Services.Interfaces;
 
-namespace Xtramile.WeatherForecasts.Test.Services
+namespace Xtramile.WeatherForecasts.Test.Controllers
 {
     [TestFixture]
-    public class CountryServiceTest
+    public class CountryControllerTest
     {
-        private ICountryService _countryService;
+        private CountryController _countryController;
         private ICountryRepository _countryRepository;
+        private ICountryService _countryService;
         private IMapper _mapper;
 
         [SetUp]
@@ -24,12 +26,14 @@ namespace Xtramile.WeatherForecasts.Test.Services
             var profile = new WeatherForecastMapperConfig();
             _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(profile)));
             _countryService = new CountryService(_mapper, _countryRepository);
+
+            _countryController = new CountryController(_countryService);
         }
 
         [Test]
         public async Task GetAllCountries_Should_MoreThanZero()
         {
-            var result = await _countryService.GetAllCountries();
+            var result = await _countryController.GetAllCountries();
             Assert.Greater(result.Data.Count, 0);
         }
     }

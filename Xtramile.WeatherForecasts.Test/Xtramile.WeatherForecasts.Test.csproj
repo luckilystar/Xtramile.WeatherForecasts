@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Xtramile.WeatherForecasts.Api\Xtramile.WeatherForecasts.Api.csproj" />
     <ProjectReference Include="..\Xtramile.WeatherForecasts.Library\Xtramile.WeatherForecasts.Library.csproj" />
     <ProjectReference Include="..\Xtramile.WeatherForecasts.Repository\Xtramile.WeatherForecasts.Repository.csproj" />
