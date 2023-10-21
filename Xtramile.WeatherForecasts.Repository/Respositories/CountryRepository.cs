@@ -15,8 +15,8 @@ namespace Xtramile.WeatherForecasts.Repository.Respositories
         {
             try
             {
-                var data = await OpenAndReadCountryFile();
-                List<Country> countries = ParseCountryData(data);
+                var result = await OpenAndReadCountryFile();
+                List<Country> countries = ParseCountryData(result);
                 return countries;
             }
             catch (Exception)
