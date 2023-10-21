@@ -19,9 +19,12 @@ namespace Xtramile.WeatherForecasts
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureHttpClient();
             services.AddControllers();
+            services.ConfigureMapper();
             services.ConfigureCors();
             services.ConfigureDependencyInjection();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,6 +33,8 @@ namespace Xtramile.WeatherForecasts
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseRouting();

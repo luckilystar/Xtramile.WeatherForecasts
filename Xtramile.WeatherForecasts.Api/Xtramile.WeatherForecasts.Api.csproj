@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Xtramile.WeatherForecasts.Library\Xtramile.WeatherForecasts.Library.csproj" />
     <ProjectReference Include="..\Xtramile.WeatherForecasts.Repository\Xtramile.WeatherForecasts.Repository.csproj" />
     <ProjectReference Include="..\Xtramile.WeatherForecasts.Service\Xtramile.WeatherForecasts.Service.csproj" />
