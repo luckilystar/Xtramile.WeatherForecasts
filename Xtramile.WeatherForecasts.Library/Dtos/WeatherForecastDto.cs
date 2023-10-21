@@ -6,6 +6,7 @@ namespace Xtramile.WeatherForecasts.Library.Dtos
 {
     public class WeatherForecastDto
     {
+        public WeatherForecastDto() { }
         public WeatherForecastDto(WeatherForecast w)
         {
             Pressure = w.Main.Pressure;
@@ -33,6 +34,6 @@ namespace Xtramile.WeatherForecasts.Library.Dtos
 
         public float TemperatureC { get; set; }
 
-        public float TemperatureF => 32 + (float)(TemperatureC / 0.5556);
+        public float TemperatureF => 32 + (float)(TemperatureC * 9 / 5);
     }
 }

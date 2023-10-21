@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
 using Xtramile.WeatherForecasts.Library.Dtos;
 using Xtramile.WeatherForecasts.Library.Responses;
@@ -19,8 +18,15 @@ namespace Xtramile.WeatherForecasts.Service.Services
 
         public async Task<GetWeatherForecastResponse> GetWeatherForecast(string city)
         {
-            var result = await weatherForecastRepository.GetWeatherForecast(city);
-            return new GetWeatherForecastResponse(new WeatherForecastDto(result));
+            try
+            {
+                var result = await weatherForecastRepository.GetWeatherForecast(city);
+                return new GetWeatherForecastResponse(new WeatherForecastDto(result));
+            }
+            catch (Exception ex)
+            {
+                return new GetWeatherForecastResponse(ex.Message);
+            }
         }
     }
 }

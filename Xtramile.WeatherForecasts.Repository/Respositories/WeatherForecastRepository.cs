@@ -22,7 +22,7 @@ namespace Xtramile.WeatherForecasts.Repository.Repositories
             try
             {
                 if (string.IsNullOrEmpty(city))
-                    return new WeatherForecast();
+                    throw new Exception("City cannot be empty to retrieve weather forecast.");
 
                 var apiUrl = ApiConst.GET_WEATHER_FORECAST + "&q=" + city;
 
@@ -37,7 +37,7 @@ namespace Xtramile.WeatherForecasts.Repository.Repositories
             }
             catch (Exception)
             {
-                return new WeatherForecast();
+                throw new Exception("There is a problem to retrieve weather forecast.");
             }
         }
     }

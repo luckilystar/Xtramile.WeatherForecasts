@@ -3,8 +3,9 @@ using Xtramile.WeatherForecasts.Library.Dtos;
 
 namespace Xtramile.WeatherForecasts.Library.Responses
 {
-    public class GetWeatherForecastResponse: BaseResponse<WeatherForecastDto>
+    public class GetWeatherForecastResponse : BaseResponse<WeatherForecastDto>
     {
-        public GetWeatherForecastResponse(WeatherForecastDto weatherForecast):base(weatherForecast) { }
+        public GetWeatherForecastResponse(WeatherForecastDto weatherForecast) : base(weatherForecast) { }
+        public GetWeatherForecastResponse(string error) : base(error) { }
     }
 }
