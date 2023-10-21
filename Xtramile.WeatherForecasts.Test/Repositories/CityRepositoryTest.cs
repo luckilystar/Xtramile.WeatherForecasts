@@ -22,5 +22,13 @@ namespace Xtramile.WeatherForecasts.Test.Repositories
             var result = await _cityRepository.GetAllCities();
             Assert.Greater(result.Count, 0);
         }
+
+        [Test]
+        public async Task GetAllCitiesByCountry_Should_MoreThanZero()
+        {
+            string country = "GB";
+            var result = await _cityRepository.GetAllCities(country);
+            Assert.Greater(result.Count, 0);
+        }
     }
 }

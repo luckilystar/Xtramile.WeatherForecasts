@@ -29,7 +29,7 @@ namespace Xtramile.WeatherForecasts.Repository.Respositories
         public async Task<List<City>> GetAllCities(string country)
         {
             var cities = await GetAllCities();
-            return cities.Where(c => c.Country == country).ToList();
+            return cities.Where(c => c.Country.ToLower().Contains(country.Trim().ToLower())).ToList();
         }
 
         private async Task<JArray> OpenAndReadCityFile()

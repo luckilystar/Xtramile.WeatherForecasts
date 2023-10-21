@@ -22,6 +22,8 @@ namespace Xtramile.WeatherForecasts.Api.ServiceExtensions
         public static void ConfigureDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<ICityService, CityService>();
+
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
         }
