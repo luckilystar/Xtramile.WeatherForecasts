@@ -1,6 +1,8 @@
+using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xtramile.WeatherForecasts.Repository.Repositories;
+using Xtramile.WeatherForecasts.Library.Models;
 using Xtramile.WeatherForecasts.Repository.Repositories.Interfaces;
 
 namespace Xtramile.WeatherForecasts.Test.Repositories
@@ -8,18 +10,23 @@ namespace Xtramile.WeatherForecasts.Test.Repositories
     [TestFixture]
     public class CountryRepositoryTest
     {
-        private ICountryRepository _countryRepository;
+        private Mock<ICountryRepository> _countryRepositoryMock;
 
         [SetUp]
         public void Setup()
         {
-            _countryRepository = new CountryRepository();
+            _countryRepositoryMock = new Mock<ICountryRepository>();
         }
 
         [Test]
         public async Task GetAllCountries_Should_MoreThanZero()
         {
-            var result = await _countryRepository.GetAllCountries();
+            var countries = new List<Country>{
+                new Country{ },
+                new Country{ }
+            };
+            _countryRepositoryMock.Setup(c => c.GetAllCountries()).Returns(Task.FromResult(countries));
+            var result = await _countryRepositoryMock.Object.GetAllCountries();
             Assert.Greater(result.Count, 0);
         }
     }

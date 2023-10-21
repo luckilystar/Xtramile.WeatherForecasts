@@ -1,10 +1,9 @@
-using AutoMapper;
+using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xtramile.WeatherForecasts.Library.Mappers;
-using Xtramile.WeatherForecasts.Repository.Repositories;
-using Xtramile.WeatherForecasts.Repository.Repositories.Interfaces;
-using Xtramile.WeatherForecasts.Service.Services;
+using Xtramile.WeatherForecasts.Library.Dtos;
+using Xtramile.WeatherForecasts.Library.Responses;
 using Xtramile.WeatherForecasts.Service.Services.Interfaces;
 
 namespace Xtramile.WeatherForecasts.Test.Services
@@ -12,24 +11,25 @@ namespace Xtramile.WeatherForecasts.Test.Services
     [TestFixture]
     public class CountryServiceTest
     {
-        private ICountryService _countryService;
-        private ICountryRepository _countryRepository;
-        private IMapper _mapper;
+        private Mock<ICountryService> _countryServiceMock;
 
         [SetUp]
         public void Setup()
         {
-            _countryRepository = new CountryRepository();
-
-            var profile = new WeatherForecastMapperConfig();
-            _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(profile)));
-            _countryService = new CountryService(_mapper, _countryRepository);
+            _countryServiceMock = new Mock<ICountryService>();
         }
 
         [Test]
         public async Task GetAllCountries_Should_MoreThanZero()
         {
-            var result = await _countryService.GetAllCountries();
+            var countries = new List<CountryDto>{
+                new CountryDto{ },
+                new CountryDto{ }
+            };
+            var response = new GetAllCountriesResponse(countries);
+            _countryServiceMock.Setup(c => c.GetAllCountries()).Returns(Task.FromResult(response));
+
+            var result = await _countryServiceMock.Object.GetAllCountries();
             Assert.Greater(result.Data.Count, 0);
         }
     }
